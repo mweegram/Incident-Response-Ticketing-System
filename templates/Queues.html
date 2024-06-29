@@ -1,0 +1,24 @@
+<!--
+This page shows a list of all available queues
+-->
+
+{% include 'base.html' %}
+<h1>Queues</h1>
+
+<!-- if there are queues (will always be atleast 1)-->
+{% if queues %}
+
+    <!-- Iterate through queues-->
+    {% for queue in queues %}
+    <table style="margin-inline:auto;width:40%;">
+        <!-- Display the name of each queue along with a link to access it-->
+        <tr>
+            <td style="width:70%;"><h5>{{queue[1]}}</h5></td>
+            <td style="width:30%;"><a href="/ViewQueue/{{queue[0]}}">View Queue</a></td>
+        </tr>
+    </table>
+    {% endfor %}
+{% endif %}
+
+<!-- Link to a form to create a new queue -->
+<a style="display:block;margin-top:1.5em;width:20%;margin-inline:auto;border-radius:2em;" class="button" href="/NewQueue">Create New Queue</a>

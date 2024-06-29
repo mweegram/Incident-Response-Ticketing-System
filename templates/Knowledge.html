@@ -1,0 +1,18 @@
+<!--
+    This page is used to show all available knowledge mappings
+-->
+
+{% include 'base.html' %}
+
+<h1>Knowledge Base</h1>
+
+<a href="/CreateKnowledge">Create a New Entry</a>
+
+<div style="width:60%;margin-inline:auto;">
+{% if knowledge %}
+    <!-- Shows each knowledge mapping, with a link to it, also identifies the ID of the mapping-->
+    {% for mapping in knowledge %}
+        <div class="commentbox"><table style="width:90%;margin:auto;"><td style="width:10%;">INC{{mapping[0]}}</td><td style="width:80%">{{mapping[1]}}</td> <td style="width:10%;"><a href="/ViewKnowledge/{{mapping[0]}}">View</a></td></table></div>
+    {% endfor %}
+{% endif %}
+</div>

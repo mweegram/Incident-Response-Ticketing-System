@@ -1,0 +1,73 @@
+<!--
+This page is used in order to display the contents of a particular queue
+-->
+
+{% include 'base.html' %}
+<!-- Refresh the page, every 30 seconds -->
+<meta http-equiv="refresh" content="30">
+
+<!-- Show queue name -->
+<h1>{{name}}</h1>
+
+<!-- Display stats about he queue, the amount of open tickets,average response time and how many tickets have been seen in that queue that day-->
+<div class="statsbox">
+    <table>
+        <td style="width:20%">Total Open Tickets: {{amount}}</td><td style="width:20%">Average Ticket Response Time: {{avg}}</td><td style="width:20%">Total Tickets In Queue Today: {{ticksday}}</td>
+    </table>
+</div>
+
+<!-- If tickets with the status of new exist-->
+{% if new %}
+    <h2 style="margin-top:2em;">New</h2>
+
+
+    <!-- Iterate through all tickets with status new and display information, like id, owner, created time and provide a link-->
+    {% for ticket in new %}
+        <div class="queuebox">
+            <table style="width:100%;">
+                <tr>
+                <td style="width:5%">{{ticket[0]}}</td>
+                <td style="width:45%;overflow-wrap:break-word;"><a href="/ViewTicket/{{ticket[0]}}">{{ticket[1]}}</a></td>
+                <td style="width:30%"><strong>Time: </strong>{{ticket[3]}}</td>
+                <td style="width:25%"><strong>Owner: </strong> {{ticket[2]}}</td>
+                </tr>
+            </table>
+        </div>
+        {% endfor %}
+{% endif %}
+
+<!-- If any tickets have status, Under Investigation-->
+{% if ui %}
+    <h2 style="margin-top:2em;">Under Investigation</h2>
+    <!-- Iterate through all tickets with status Under Investigation and display information, like id, owner, created time and provide a link-->
+    {% for ticket in ui %}
+        <div class="queuebox">
+            <table style="width:100%;">
+                <tr>
+                <td style="width:5%">{{ticket[0]}}</td>
+                <td style="width:45%;overflow-wrap:break-word;"><a href="/ViewTicket/{{ticket[0]}}">{{ticket[1]}}</a></td>
+                <td style="width:30%"><strong>Time: </strong>{{ticket[3]}}</td>
+                <td style="width:25%"><strong>Owner: </strong> {{ticket[2]}}</td>
+                </tr>
+            </table>
+        </div>
+        {% endfor %}
+{% endif %}
+
+<!-- if any tickets have the status of on hold-->
+{% if oh %}
+    <h2 style="margin-top:2em;">On-Hold</h2>
+    <!-- Iterate through all tickets with status on hold and display information, like id, owner, created time and provide a link-->
+    {% for ticket in oh %}
+        <div class="queuebox">
+            <table style="width:100%;">
+                <tr>
+                <td style="width:5%">{{ticket[0]}}</td>
+                <td style="width:45%;overflow-wrap:break-word;"><a href="/ViewTicket/{{ticket[0]}}">{{ticket[1]}}</a></td>
+                <td style="width:30%"><strong>Time: </strong>{{ticket[3]}}</td>
+                <td style="width:25%"><strong>Owner: </strong> {{ticket[2]}}</td>
+                </tr>
+            </table>
+        </div>
+        {% endfor %}
+{% endif %}

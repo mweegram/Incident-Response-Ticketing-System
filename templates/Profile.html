@@ -1,0 +1,32 @@
+<!--
+This page is used to display a user's profile, with information about the account.
+-->
+{% include 'base.html' %}
+
+<!-- Welcome the user with their name-->
+<h2>Welcome {{session['username']}}</h2>
+
+<!-- Get the total amount of tickets that they have -->
+<p>Total Tickets: {{tickets|length}}</p>
+
+<!-- Logout the user-->
+<a class="button" href="/Logout">Log Out</a>
+
+<!-- Allow the user to change their queue -->
+<a class="button" href="/ChangeQueue">Change Default Queue</a>
+
+<!-- if the user has tickets in progress -->
+{% if tickets %}
+    <h2 style="margin-top:1em;">Your Open Tickets</h2>
+
+    <!-- Iterate through users tickets -->
+    {% for ticket in tickets %}
+        <!-- Presents the ticket, showing ticket name, queue and provides a link-->
+        <div class="profiletix">
+            <h4>{{ticket[0]}}</h4>
+            <p>{{ticket[1]}}</p>
+            <a href="/ViewTicket/{{ticket[3]}}">View Ticket</a>
+        </div>
+        
+    {% endfor %}
+{% endif %}

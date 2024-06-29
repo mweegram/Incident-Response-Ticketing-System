@@ -1,0 +1,17 @@
+<!--
+This page shows the form used in order to update a piece of key information
+-->
+{% include 'base.html' %}
+{% import "bootstrap/wtf.html" as wtf %}
+
+<body>
+    <h1>Update Key Information</h1>
+    <p class="pt-5"><strong>{{ message }}</strong></p>
+    <div class="formsheet">
+        {{ wtf.quick_form(form) }}
+
+        <!-- Link to remove a piece of key information -->
+        <a href="/RemoveKeyInfo/{{id}}" >Remove Key Information</a>
+    </div>
+    
+</body>

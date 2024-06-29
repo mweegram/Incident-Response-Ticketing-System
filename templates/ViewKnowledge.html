@@ -1,0 +1,41 @@
+<!--
+    This page is used to view a knowledge mapping
+-->
+
+{% include 'base.html' %}
+
+<div style="width:60%;overflow-wrap:break-word;margin-inline:auto;">
+<h1>{{title}}</h1>
+
+<span style="text-align:left;">
+    <h4>Description:</h4>
+<p>{{description}}</p>
+</span>
+
+<div class="buttoncontainer" style="margin-bottom:1em;"><a class="button" style="border-radius:1em;" href="/UpdateKnowledge/{{id}}">Update Knowledge Mapping</a><a class="button" style="border-radius:1em;" href="/RemoveKnowledge/{{id}}">Delete Knowledge Mapping</a></div>
+
+</div>
+
+<!-- Show Knowledge Mapping relevant stats -->
+<div class="statsbox">
+    <h3>Statistics</h3>
+    <table style="width:100%;"><tr style="font-weight:bolder;"><td>Total Tickets</td><td>False Positive Rate</td><td>Volume (last 7 Days)</td></tr><td style="width:33%;">{{stats[0]}}</td><td style="width:33%;">{{stats[1]}}%</td><td style="width:33%;">{{stats[2]}}</td></table>
+</div>
+
+<a class="bigbutton" href="/CreateGuidance/{{id}}">Add Guidance</a>
+
+<!-- If guidance exists for this mapping-->
+{% if knowledge%}
+    <!-- Iterate over every instace of guidance for this mapping -->
+    {% for guidance in knowledge %}
+        <div class="knowledge">
+            <!-- Show Title and Description as well as a link to remove and update the knowledge mapping-->
+            <h2>{{guidance[0]}}</h2>
+            <p>{{guidance[1]}}</p>
+            <table style="width:100%;margin-top:3em;">
+            <td><a href="/RemoveGuidance/{{guidance[2]}}">Remove Guidance</a></td>
+            <td><a style="float: right;" href="/UpdateGuidance/{{guidance[2]}}">Update Guidance</a></td>
+            </table>
+        </div>
+    {% endfor %}
+{% endif %}

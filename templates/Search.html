@@ -1,0 +1,30 @@
+<!--
+This page is used to display search results to the user.
+-->
+{% include "base.html" %}
+
+<h1>Search Results</h1>
+
+<!-- If the search has any results -->
+{% if results %}
+
+    <!-- if there are two or more results, provide links that allow relationships to be established -->
+    {% if results|length >= 2 %}
+        <div class="buttoncontainer" style="width:30%;margin-bottom:1em;">
+            <a class="button" style="border-radius:0.5em;" href="/LinkToRoot/{{ids}}">Link All to Root Ticket</a><br>
+            <a class="button" style="border-radius:0.5em;"href="/RecursiveRelate/{{ids}}">Link All To Eachother</a>
+        </div>
+    {% endif %}
+    <!-- Create a table to show the Name, Owner and Created timestamp for each result, with a link to access them -->
+    <table style="margin-inline:auto;width:60%;">
+        <tr><td style="width:60%;">Ticket Name</td><td>Owner</td><td>Created</td></tr>
+    {% for ticket in results%}
+        <tr><td><a href="/ViewTicket/{{ticket[0]}}">{{ticket[1]}}</a></td><td>{{ticket[3]}}</td><td>{{ticket[2]}}</td></tr>
+    {% endfor %}
+    </table>
+
+<!-- If no results, say so.-->
+{% else %}
+    <h3>No Results Found!</h3>
+    </table>
+{% endif %}

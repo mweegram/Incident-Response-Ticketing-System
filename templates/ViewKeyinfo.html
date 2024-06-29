@@ -1,0 +1,37 @@
+<!--
+This is used to view a piece of key information and see tickets it is also seen in.
+-->
+{% include 'base.html' %}
+
+<h3 style="margin-top:0.5em;">Key Information Review</h3>
+<!-- The value of the piece of key information -->
+<h4 >{{related[0][0]}}</h4>
+<!-- How many times it has been seen-->
+<div class="statsbox" style="margin-bottom:1em;">
+    <h2>Statistics</h2>
+    <table style="width:100%;">
+        <tr><th>Total</th><th>False Positive Rate (Resolved Only)</th><th>Volume (7 Days)</th></tr>
+        <tr><td>{{stats[0]}}</td><td>{{stats[1]}}%</td><td>{{stats[2]}}</td></tr>
+    </table>
+</div>
+
+<!--If there is 2 or more occurances, allow the ticket to be related to one another -->
+<div style="width:30%" class="buttoncontainer">
+{% if related|length >= 2 %}
+    <a class="button" href="/LinkToRoot/{{ids}}">Link All to Root Ticket</a><br>
+    <a class="button" href="/RecursiveRelate/{{ids}}">Link All To Each Other</a>
+{% endif %}
+</div>
+<!-- If the Key information has been seen before -->
+{% if related %}
+<table style="margin:auto;">
+    <tr><th>Comment</th><th style="padding-left:2em;">Hyperlink</th></tr>
+    <!-- Display each ticket is has been seen on before, with a link to view the ticket. -->
+    {% for x in related %}
+        <tr>
+            <td><p>{{x[2]}}</p></td>
+            <td style="padding-left:2em;"><a href="/ViewTicket/{{x[1]}}">View Ticket</a></td>
+        </tr>
+    {% endfor %}
+</table>
+{% endif %}

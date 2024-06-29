@@ -1,0 +1,43 @@
+<!--
+This is the base template, used in every other page to provide the navbar and import the CSS stylesheet.
+-->
+
+<!DOCTYPE html>
+<head>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
+    <link rel= "stylesheet" type= "text/css" href= "{{ url_for('static',filename='styles.css') }}">
+    <title>Ticket Management System</title>
+</head>
+
+<body>
+    <nav class="navbar navbar-expand-lg navbar-dark" style="background-color:#212D40;margin-bottom:1em;">
+        <a class="navbar-brand" href="/">Ticket Management</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNav">
+          <ul class="navbar-nav">
+              <a class="nav-link" href="/FindMyQueue">View My Queue</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="/Login">Account</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="/Queues">Queues</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="/NewTicket">Create Ticket</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="/Knowledge">View Knowledge Base</a>
+            </li>
+          </ul>
+          <span style="display:flex;flex-grow:1;justify-content:right;">
+            <form class="form-inline" action="/Search" >
+              <input  class="form-control mr-sm-2" type="search" name="search" placeholder="Search" aria-label="Search">
+              <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
+            </form>
+          </span>
+        </div>
+      </nav>
+</body>

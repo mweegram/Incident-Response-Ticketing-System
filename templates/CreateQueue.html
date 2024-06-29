@@ -1,0 +1,13 @@
+<!--
+This page displays the form used to create a new queue
+-->
+{% include 'base.html' %}
+{% import "bootstrap/wtf.html" as wtf %}
+
+<body>
+    <h1>Create New Queue</h1>
+    <p class="pt-5"><strong>{{ message }}</strong></p>
+    <div class="formsheet">
+        {{ wtf.quick_form(form) }}
+    </div>
+</body>

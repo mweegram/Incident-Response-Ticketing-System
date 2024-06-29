@@ -1,0 +1,112 @@
+<!-- 
+This page is used to view the contents of a ticket.
+-->
+{% include 'base.html' %}
+<!-- refresh every thirty seconds-->
+<meta http-equiv="refresh" content="30">
+
+<div class="mainticket">
+<!-- Show the tickets title -->
+<h3>{{ticket[0]}}</h3>
+
+<!-- Show the tickets created date-->
+<span style="float:right;"><h5>Created:</h5><p>{{ticket[2]}}</p></span>
+
+<!-- Show the tickets description -->
+<h5>Description:</h5>
+<p>{{ticket[1]}}</p>
+
+<!-- Show the tickets status -->
+<h5>Status:</h5>
+<p>{{ticket[4]}}</p>
+
+{% if knowledge %}
+<div class="showknowledge">
+    <a href="/ViewKnowledge/{{knowledge}}">View Knowledge Base Entry</a>
+</div>
+{% endif %}
+
+<div class="buttoncontainer">
+<!-- If the current user is the owner of the ticket, present a link to edit ticket content -->
+{% if Owner %}
+    <a class="button" href="/UpdateTicket/{{ticket[3]}}">Edit Ticket</a>
+{% endif %}
+
+<!-- Add a button that can be used to add key information to the ticket -->
+<a class="button" href="/NewKeyinfo/{{ticket[3]}}">Add Key Info</a>
+
+<!-- Create a button that can be used to add a new relationship to the ticket -->
+<a class="button" href="/NewRelationship/{{ticket[3]}}">Add Relationship</a>
+
+<!-- Create a button to add a new comment-->
+<a class="button" href="/NewComment/{{ticket[3]}}">Add Comment</a>
+
+<!-- if the ticket is under investigation or on hold add link to resolve ticket-->
+{% if (ticket[4] != 'Resolved' and ticket[4] != 'New') %}
+<a class="button" href="/Resolve/{{ticket[3]}}">Resolve Ticket</a>
+{% endif %}
+
+<!-- if ticket is closed show link to reopen it-->
+{% if ticket[4] == 'Resolved' %}
+<a class="button" href="/Reopen/{{ticket[3]}}">Re-Open Ticket</a>
+{% endif %}
+
+<!-- If the ticket is new, show a link for the user to take the ticket-->
+{% if ticket[4] == 'New' %}
+<a class="button" href="/TakeTicket/{{ticket[3]}}">Take Ticket</a>
+{% endif %}
+
+</div>
+<!-- If there is any key information -->
+{% if key %}
+<h3 style="margin-top: 1em;">Key Information:</h3>
+
+<!-- Create a table that shows all of the key information, with a link and how many times it has been seen-->
+<table style="margin-inline:auto;margin-bottom:1em;width:75%;"><th>Item</th><th style="padding-right:2em;">Descriptor</th><th style="width:12.5%;">Count</th><th style="width:7.5%;"></th>
+{% for ki in key%}
+    <tr><td style="padding-right:2em;"><a href="/ViewKeyInfo/{{ki[0]}}">{{ki[0]}}</a></td><td >{{ki[1]}}</td><td>{{ki[3]}}</td><td><a href="/UpdateKeyInfo/{{ki[2]}}">Edit</a></td></tr>
+{% endfor %}
+</table>
+{% endif %}
+
+<!-- If there are any relationships-->
+{% if relations %}
+
+<h3 style="margin-top:1em;">Relationships:</h3>
+<!-- If the ticket is not resolved, create a link that can be used to close other linked tickets-->
+{% if ticket[4] != "Resolved" %}
+<a style="display:block;text-align:center;margin-top: 1em;" href="/CloseLinked/{{ticket[3]}}">Make This Ticket a Root Ticket</a>
+{% endif %}
+
+<!-- Create a table to display all of the related tickets, show name and a link-->
+<table style="margin-inline:auto;width:75%;">
+    <th style="width:80%;">Ticket</th><th style="width:20%;"></th>
+{% for relation in relations%}
+    <tr><td><a href="/ViewTicket/{{relation[0]}}">{{relation[1]}}</a></td><td><a href="/RemoveRelationship/{{ticket[3]}}/{{relation[2]}}">Remove</a></td></tr>
+{% endfor %}
+</table>
+{% endif %}
+
+<!-- if there are any comments-->
+{% if comments %}
+<h3>Comments:</h3>
+
+<!-- if there are two or more tickets, show a link to see the incident summary. -->
+{% if comments|length >= 2 %}
+    <div style="text-align:center;"><a href="/ViewSummary/{{ticket[3]}}">View Summary</a></div>
+{% endif %}
+
+<!-- for each comment, show information about the comment, format background colour dependant on the incident response framework step -->
+{% for comment in comments %}
+    <div class="commentbox" {% if comment[4] == 1 %} style="background-color:#e0bfbf;"{% endif %}{% if comment[4] == 2 %} style="background-color:#cbc7ed;"{% endif %}{% if comment[4] == 3 %} style="background-color:#e0ffe6;"{% endif %}{% if comment[4] == 4 %} style="background-color:#fce0ff;"{% endif %}>
+        {% if comment[7]%}
+            <a style="float:right;" href="/UpdateComment/{{comment[6]}}">Update Comment</a>
+        {% endif %}
+        <h5>{{comment[1]}} Commented: </h5>
+        <p style="float:right;">{{comment[3]}}</p>
+        <p>{{comment[2]}}</p>
+        <p>{{comment[0]}}</p>
+    </div>
+{% endfor %}
+{% endif %}
+</div>

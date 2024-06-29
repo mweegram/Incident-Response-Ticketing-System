@@ -1,0 +1,214 @@
+body
+{
+    background-color: #AFBED1;
+    text-align: center;
+}
+
+.formsheet
+{
+    padding: 2em;
+    width:60%;
+    margin-inline: auto;
+    background-color: lightblue;
+    border: 2px solid black;
+}
+
+.queuebox
+{
+    padding: 1em;
+    width: 75%;
+    background-color: lightblue;
+    border: 2px solid black;
+    margin-inline: auto;
+    margin-top: 1em;
+    overflow-wrap: break-word;
+}
+
+.profiletix
+{
+    padding: 1em;
+    width: 25%;
+    background-color: lightblue;
+    border: 2px solid black;
+    margin-inline: auto;
+    margin-top: 1em;
+    overflow-wrap: break-word;
+}
+
+.mainticket
+{
+    padding: 1em;
+    width: 60%;
+    background-color: lightblue;
+    border: 2px solid black;
+    margin-inline: auto;
+    margin-top: 2em;
+    text-align: left;
+    overflow-wrap: break-word;
+}
+
+.statsbox
+{
+   width: 60%;
+   background-color: lightblue;
+   margin-inline: auto;
+   padding: 1em;
+   outline: 2px solid black;
+   border-radius: 6px;
+}
+
+.statsbox table
+{
+    margin-inline: auto;
+}
+
+
+.mainticket h3
+{
+    text-align: center;
+}
+
+.mainticket h5
+{
+    font-weight:bold;
+}
+
+.button
+{
+    padding:0.5em;
+    background-color: lightgray;
+    border: 2px solid black;
+    border-radius: .75em;
+}
+
+.button:hover{
+    background-color: darkcyan;
+}
+
+.commentbox
+{
+    width:95%;
+    margin-inline: auto;
+    border: 2px solid black;
+    margin-top: 1em;
+    background-color: gainsboro;
+    padding:0.5em;
+    overflow-wrap: break-word;
+}
+
+.summary
+{
+    width:65%;
+    margin-inline: auto;
+    padding: 2em;
+}
+
+table
+{
+    table-layout: fixed;
+}
+
+td
+{
+    overflow-wrap: break-word;
+}
+
+.bigbutton
+{
+    padding: .75em;
+    background-color: lightblue;
+    display:block;
+    width:20%;
+    margin-inline: auto;
+    margin-top: 1em;
+    border: 2px solid black;
+    border-radius: 3em;
+    
+}
+
+.bigbutton:hover
+{
+    background-color: darkcyan;
+    text-decoration: none;
+}
+
+.knowledge
+{
+    text-align:left;
+    width:55%;
+    margin-inline:auto;
+    background-color: lightblue;
+    margin-top:1.5em;
+    padding:1em;
+    padding-top: 0.25em;
+    border: 2px solid black;
+    overflow-wrap: break-word;
+}
+
+.showknowledge a
+{
+    margin-bottom: 1em;
+    width: 40%;
+    padding:.75em;
+    outline: 2px solid black;
+    background-color: lightgrey;
+    margin-inline: auto;
+    text-align: center;
+    display: block;
+
+}
+
+.showknowledge a:hover
+{
+    background-color: aquamarine;
+}
+
+.buttoncontainer
+{
+    width:100%;
+    display: flex;
+    text-align: center;
+    margin-inline:auto;
+    gap: 10px;
+    
+}
+
+.buttoncontainer a
+{
+    flex-basis: 50%;
+    flex-shrink: 10%;
+}
+
+.dashboard
+{
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    grid-template-rows: repeat(3, 1fr);
+    column-gap: 0.25rem;
+    row-gap: 0.25rem;
+    width: 99%;
+    margin-inline: auto;
+    margin-bottom: 0.5rem;
+    
+}
+
+.dashboard div
+{
+    background-color: lightblue;
+    padding:3.125rem;
+    border-radius: .75rem;
+    border: 2px solid black;
+}
+
+.dashboxlongright
+{
+    grid-row: span 2;
+    grid-column: 3/3; 
+}
+
+.dashboxlongleft
+{
+
+    grid-row: span 2;
+    grid-column: 1/1; 
+}

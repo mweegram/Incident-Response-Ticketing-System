@@ -1,0 +1,46 @@
+<!--
+This page is used to display the home page for the website.
+-->
+
+{% include 'base.html' %}
+<!-- Refresh Every 30 Seconds -->
+<meta http-equiv="refresh" content="30">
+
+<h3>Statistics (Previous 24 Hours)</h3>
+
+<!-- Dashboard Grid -->
+<div class="dashboard">  
+    <div class="dashbox"><h3>Total Tickets</h3>{{stats[0]}} Tickets</div>
+
+    <div class="dashbox"> <h3>False Positive Rate</h3>{{stats[1]}}%</div>
+
+    <div class="dashbox"><h3>Average Time From Ticket Creation to being Taken</h3>{{stats[2]}} Minutes</div>
+    
+    <div class="dashboxlongleft">
+        <h3>Busiest Queues</h3>
+        {% if busy %}
+            {% for queue in busy %}             
+                <p style="font-weight:bold;font-size:large;">{{queue[1]}}</p>
+                <p>{{queue[0]}}</p>
+            {% endfor %}
+        {% else %}
+        <h5>No Queues Have Had Tickets</h5>
+        {% endif %}
+    </div>
+    
+    <div class="dashbox"><h3>Average Time to Ticket Resolution</h3> {{stats[3]}} Minutes</div>
+
+    <div class="dashboxlongright">
+        <h3>Most Effective Analysts</h3>
+        {% if stats[5] %}
+            {% for analyst in stats[5] %}             
+                <p style="font-weight:bold;font-size:large;">{{analyst[0]}}</p>
+                <p>{{analyst[1]}}</p>
+            {% endfor %}
+        {% else %}
+        <h5>No Analysts Have Completed Any Tickets</h5>
+        {% endif %}
+    </div>
+    
+    <div class="dashbox"><h3>Tickets Breached SLA of 15 Minutes</h3>{{stats[4]}} Tickets</div>
+</div>

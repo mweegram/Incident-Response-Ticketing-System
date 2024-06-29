@@ -1,0 +1,55 @@
+<!--
+Provide an incident summary, broken down by steps of the NIST incident response framework.
+-->
+{% include "base.html" %}
+
+
+<div class="summary">
+<h1>Investigation Summary</h1>
+
+<!-- If any comments exist-->
+{% if comments %}
+    <!-- If there are any comments for the preparation step, show it with the comment and timestamp. Along with a heading to show the step.-->
+    {% if comments[0] %}
+        <h1>Preparation</h1>
+        {% for step in comments[0]%}
+        <div class="commentbox">
+            <p>{{step[0]}}</p>
+            <p>{{step[2]}}</p>
+        </div>
+        {% endfor %}
+    {% endif %}
+    <!-- If there are any comments for the Detection and Analysis step, show it with the comment and timestamp. Along with a heading to show the step.-->
+    {% if comments[1] %}
+        <h1>Detection and Analysis</h1>
+        {% for step in comments[1]%}
+        <div class="commentbox">
+            <p>{{step[0]}}</p>
+            <p>{{step[2]}}</p>
+        </div>
+        {% endfor %}
+    {% endif %}
+    <!-- If there are any comments for the Containment,Eradication and Recovery step, show it with the comment and timestamp. Along with a heading to show the step.-->
+    {% if comments[2] %}
+        <h1>Containment,Eradication and Recovery</h1>
+        {% for step in comments[2]%}
+            <div class="commentbox">
+                <p>{{step[0]}}</p>
+                <p>{{step[2]}}</p>
+            </div>
+        {% endfor %}
+    {% endif %}
+
+    <!-- If there are any comments for the Post-Incident activity step, show it with the comment and timestamp. Along with a heading to show the step.-->
+    {% if comments[3] %}
+        <h1>Post-Incident Activity</h1>
+        {% for step in comments[3]%}
+        <div class="commentbox">
+            <p>{{step[0]}}</p>
+            <p>{{step[2]}}</p>
+        </div>
+        {% endfor %}
+    {% endif %}
+
+{% endif %}
+</div>

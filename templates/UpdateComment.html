@@ -1,0 +1,14 @@
+<!--
+This page is used to display the form to update a comment.
+-->
+{% include 'base.html' %}
+{% import "bootstrap/wtf.html" as wtf %}
+
+<body>
+    <h1>Update Comment</h1>
+    <div class="formsheet">
+        {{ wtf.quick_form(form) }}
+        <!-- Link to remove the comment if neccessary -->
+        <a href="/RemoveComment/{{id}}" >Remove Comment</a>
+    </div>
+</body>
